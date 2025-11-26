@@ -53,15 +53,17 @@
             G19_lblCodigoProducto = new Label();
             G19_TituloProductos = new Label();
             panel1 = new Panel();
-            listView1 = new ListView();
+            G19_lblTotalGastadoDineroCliente = new Label();
+            G19_lstClientes = new ListView();
             G19_lsvNombreCliente = new ColumnHeader();
             G19_lsvApellidosCliente = new ColumnHeader();
             G19_lsvDniCliente = new ColumnHeader();
             G19_lsvCelularCliente = new ColumnHeader();
             G19_lsvGastoTotalCliente = new ColumnHeader();
+            G19_lblNombreTextoTotal = new Label();
             G19_TituloListClientes = new Label();
             panel2 = new Panel();
-            listView2 = new ListView();
+            G19_lstProductos = new ListView();
             G19_lsvCodigoProducto = new ColumnHeader();
             G19_lsvNombreProducto = new ColumnHeader();
             G19_lsvCategoriaProducto = new ColumnHeader();
@@ -77,8 +79,6 @@
             G19_lblProductosignarCliente = new Label();
             G19_lblClienteAsignarProducto = new Label();
             G19_TituloAsignarProdClient = new Label();
-            G19_lblNombreTextoTotal = new Label();
-            G19_lblTotalGastadoDineroCliente = new Label();
             G19_PanelCliente.SuspendLayout();
             G19_PanelProducto.SuspendLayout();
             panel1.SuspendLayout();
@@ -214,6 +214,7 @@
             G19_btnRegistrarProducto.TabIndex = 17;
             G19_btnRegistrarProducto.Text = "Registrar Producto";
             G19_btnRegistrarProducto.UseVisualStyleBackColor = true;
+            G19_btnRegistrarProducto.Click += G19_btnRegistrarProducto_Click;
             // 
             // G19_cmbCategoríaProducto
             // 
@@ -310,7 +311,7 @@
             // panel1
             // 
             panel1.Controls.Add(G19_lblTotalGastadoDineroCliente);
-            panel1.Controls.Add(listView1);
+            panel1.Controls.Add(G19_lstClientes);
             panel1.Controls.Add(G19_lblNombreTextoTotal);
             panel1.Controls.Add(G19_TituloListClientes);
             panel1.Location = new Point(12, 227);
@@ -318,15 +319,24 @@
             panel1.Size = new Size(776, 169);
             panel1.TabIndex = 3;
             // 
-            // listView1
+            // G19_lblTotalGastadoDineroCliente
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { G19_lsvNombreCliente, G19_lsvApellidosCliente, G19_lsvDniCliente, G19_lsvCelularCliente, G19_lsvGastoTotalCliente });
-            listView1.Location = new Point(17, 29);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(742, 97);
-            listView1.TabIndex = 1;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            G19_lblTotalGastadoDineroCliente.AutoSize = true;
+            G19_lblTotalGastadoDineroCliente.Location = new Point(721, 138);
+            G19_lblTotalGastadoDineroCliente.Name = "G19_lblTotalGastadoDineroCliente";
+            G19_lblTotalGastadoDineroCliente.Size = new Size(26, 15);
+            G19_lblTotalGastadoDineroCliente.TabIndex = 7;
+            G19_lblTotalGastadoDineroCliente.Text = "text";
+            // 
+            // G19_lstClientes
+            // 
+            G19_lstClientes.Columns.AddRange(new ColumnHeader[] { G19_lsvNombreCliente, G19_lsvApellidosCliente, G19_lsvDniCliente, G19_lsvCelularCliente, G19_lsvGastoTotalCliente });
+            G19_lstClientes.Location = new Point(17, 29);
+            G19_lstClientes.Name = "G19_lstClientes";
+            G19_lstClientes.Size = new Size(742, 97);
+            G19_lstClientes.TabIndex = 1;
+            G19_lstClientes.UseCompatibleStateImageBehavior = false;
+            G19_lstClientes.View = View.Details;
             // 
             // G19_lsvNombreCliente
             // 
@@ -353,6 +363,15 @@
             G19_lsvGastoTotalCliente.Text = "Gasto total";
             G19_lsvGastoTotalCliente.Width = 80;
             // 
+            // G19_lblNombreTextoTotal
+            // 
+            G19_lblNombreTextoTotal.AutoSize = true;
+            G19_lblNombreTextoTotal.Location = new Point(612, 138);
+            G19_lblNombreTextoTotal.Name = "G19_lblNombreTextoTotal";
+            G19_lblNombreTextoTotal.Size = new Size(81, 15);
+            G19_lblNombreTextoTotal.TabIndex = 6;
+            G19_lblNombreTextoTotal.Text = "Total gastado:";
+            // 
             // G19_TituloListClientes
             // 
             G19_TituloListClientes.AutoSize = true;
@@ -365,22 +384,22 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(listView2);
+            panel2.Controls.Add(G19_lstProductos);
             panel2.Controls.Add(G19_TituloProductosStock);
             panel2.Location = new Point(12, 402);
             panel2.Name = "panel2";
             panel2.Size = new Size(392, 170);
             panel2.TabIndex = 4;
             // 
-            // listView2
+            // G19_lstProductos
             // 
-            listView2.Columns.AddRange(new ColumnHeader[] { G19_lsvCodigoProducto, G19_lsvNombreProducto, G19_lsvCategoriaProducto, G19_lsvPrecioProducto, G19_lsvStockProducto });
-            listView2.Location = new Point(12, 21);
-            listView2.Name = "listView2";
-            listView2.Size = new Size(368, 144);
-            listView2.TabIndex = 1;
-            listView2.UseCompatibleStateImageBehavior = false;
-            listView2.View = View.Details;
+            G19_lstProductos.Columns.AddRange(new ColumnHeader[] { G19_lsvCodigoProducto, G19_lsvNombreProducto, G19_lsvCategoriaProducto, G19_lsvPrecioProducto, G19_lsvStockProducto });
+            G19_lstProductos.Location = new Point(12, 21);
+            G19_lstProductos.Name = "G19_lstProductos";
+            G19_lstProductos.Size = new Size(368, 144);
+            G19_lstProductos.TabIndex = 1;
+            G19_lstProductos.UseCompatibleStateImageBehavior = false;
+            G19_lstProductos.View = View.Details;
             // 
             // G19_lsvCodigoProducto
             // 
@@ -498,29 +517,11 @@
             G19_TituloAsignarProdClient.TabIndex = 0;
             G19_TituloAsignarProdClient.Text = "Asignar Productos";
             // 
-            // G19_lblNombreTextoTotal
-            // 
-            G19_lblNombreTextoTotal.AutoSize = true;
-            G19_lblNombreTextoTotal.Location = new Point(612, 138);
-            G19_lblNombreTextoTotal.Name = "G19_lblNombreTextoTotal";
-            G19_lblNombreTextoTotal.Size = new Size(81, 15);
-            G19_lblNombreTextoTotal.TabIndex = 6;
-            G19_lblNombreTextoTotal.Text = "Total gastado:";
-            // 
-            // G19_lblTotalGastadoDineroCliente
-            // 
-            G19_lblTotalGastadoDineroCliente.AutoSize = true;
-            G19_lblTotalGastadoDineroCliente.Location = new Point(721, 138);
-            G19_lblTotalGastadoDineroCliente.Name = "G19_lblTotalGastadoDineroCliente";
-            G19_lblTotalGastadoDineroCliente.Size = new Size(26, 15);
-            G19_lblTotalGastadoDineroCliente.TabIndex = 7;
-            G19_lblTotalGastadoDineroCliente.Text = "text";
-            // 
             // SistemaSupermercado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(803, 582);
+            ClientSize = new Size(803, 587);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(G19_PanelProducto);
@@ -528,6 +529,7 @@
             Controls.Add(panel1);
             Name = "SistemaSupermercado";
             Text = "Sistema Supermercado: Producto y Consumidor";
+            Load += SistemaSupermercado_Load;
             G19_PanelCliente.ResumeLayout(false);
             G19_PanelCliente.PerformLayout();
             G19_PanelProducto.ResumeLayout(false);
@@ -569,7 +571,7 @@
         private Panel panel1;
         private Label G19_TituloListClientes;
         private Panel panel2;
-        private ListView listView2;
+        private ListView G19_lstProductos;
         private Label G19_TituloProductosStock;
         private Panel panel3;
         private Label G19_TituloAsignarProdClient;
@@ -587,7 +589,7 @@
         private Button G19_btnAsignarProducto;
         private Label G19_lblNombreTextoTotal;
         private Label G19_lblTotalGastadoDineroCliente;
-        private ListView listView1;
+        private ListView G19_lstClientes;
         private ColumnHeader G19_lsvNombreCliente;
         private ColumnHeader G19_lsvApellidosCliente;
         private ColumnHeader G19_lsvDniCliente;
