@@ -23,9 +23,17 @@ namespace EF_FP_G19
                 item.SubItems.Add(cliente.G19_ApellidosCliente);
                 item.SubItems.Add(cliente.G19_DniCliente.ToString());
                 item.SubItems.Add(cliente.G19_CelularCliente.ToString());
-                item.SubItems.Add("0"); // TODO: Realizar el calculo de Gasto Total
+                item.SubItems.Add(cliente.G19_CalcularTotalGastado().ToString());
                 item.Tag = cliente;
                 G19_lstClientes.Items.Add(item);
+            }
+        }
+        private void G19_refrescarListaAsignarCliente()
+        {
+            G19_cmbClienteAsignar.Items.Clear();
+            foreach (var cliente in G19_Clientes.listaClientes)
+            {
+                G19_cmbClienteAsignar.Items.Add($"{cliente.G19_NombreCliente} {cliente.G19_ApellidosCliente} - DNI: {cliente.G19_DniCliente}");
             }
         }
         private void G19_refrescarListaProductos()
@@ -42,10 +50,19 @@ namespace EF_FP_G19
                 G19_lstProductos.Items.Add(item);
             }
         }
+        private void G19_refrescarListaAsignarProducto()
+        {
+            G19_cmbProductoAsignar.Items.Clear();
+            foreach (var producto in G19_Productos.listaProductos)
+            {
+                G19_cmbProductoAsignar.Items.Add($"{producto.G19_NombreProducto} - Código: {producto.G19_CodigoProducto}");
+            }
+        }
 
         private void SistemaSupermercado_Load(object sender, EventArgs e)
         {
-
+            G19_refrescarListaAsignarCliente();
+            G19_refrescarListaAsignarProducto();
         }
 
         private void G19_btnRegistrarCliente_Click(object sender, EventArgs e)
@@ -96,6 +113,7 @@ namespace EF_FP_G19
             );
             G19_Clientes.G19_añadirCliente(nuevoCliente);
             G19_refrescarListaClientes();
+            G19_refrescarListaAsignarCliente();
             MessageBox.Show("Cliente registrado correctamente.");
         }
 
@@ -126,7 +144,7 @@ namespace EF_FP_G19
                 MessageBox.Show("El código, el precio y/o el stock deben contener solo números.");
                 return;
             }
-            G19_Producto nuevoProducto = new G19_Producto
+            G19_Producto G19_nuevoProducto = new G19_Producto
             (
                 int.Parse(G19_codigoProducto),
                 G19_nombreProducto,
@@ -134,9 +152,62 @@ namespace EF_FP_G19
                 double.Parse(G19_precioProducto),
                 int.Parse(G19_stockProducto)
             );
-            G19_Productos.G19_añadirProducto(nuevoProducto);
+            G19_Productos.G19_añadirProducto(G19_nuevoProducto);
             G19_refrescarListaProductos();
+            G19_refrescarListaAsignarProducto();
             MessageBox.Show("Producto registrado correctamente.");
+        }
+
+        private void G19_btnAsignarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                G19_Cliente G19_clienteSeleccionado;
+                G19_Producto G19_productoSeleccionado;
+                int G19_cantidadProducto = int.Parse(G19_numCantidadAsignar.Value.ToString());
+                if (G19_cmbClienteAsignar.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un cliente.");
+                    return;
+                }
+                else
+                {
+                    G19_clienteSeleccionado = G19_Clientes.listaClientes[G19_cmbClienteAsignar.SelectedIndex];
+                }
+                if (G19_cmbProductoAsignar.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Seleccione un producto.");
+                    return;
+                }
+                else
+                {
+                    G19_productoSeleccionado = G19_Productos.listaProductos[G19_cmbProductoAsignar.SelectedIndex];
+                }
+                if (G19_cantidadProducto <= 0)
+                {
+                    MessageBox.Show("La cantidad debe ser mayor a cero.");
+                    return;
+                }
+                if (G19_productoSeleccionado.G19_StockProducto < G19_cantidadProducto)
+                {
+                    MessageBox.Show("No hay suficiente stock del producto seleccionado.");
+                    return;
+                }
+                G19_Asignacion nuevaAsignacion = new G19_Asignacion(
+                    G19_productoSeleccionado.G19_CodigoProducto,
+                    G19_cantidadProducto,
+                    G19_productoSeleccionado.G19_StockProducto);
+                G19_clienteSeleccionado.G19_AñadirAsignacion(nuevaAsignacion);
+                G19_productoSeleccionado.G19_StockProducto -= G19_cantidadProducto;
+                G19_refrescarListaClientes();
+                G19_refrescarListaProductos();
+                MessageBox.Show("Producto asignado al cliente correctamente.");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("La cantidad debe ser un número válido.");
+                return;
+            }
         }
     }
 }

@@ -71,11 +71,11 @@
             G19_lsvStockProducto = new ColumnHeader();
             G19_TituloProductosStock = new Label();
             panel3 = new Panel();
+            G19_numCantidadAsignar = new NumericUpDown();
+            G19_cmbProductoAsignar = new ComboBox();
+            G19_cmbClienteAsignar = new ComboBox();
             G19_btnAsignarProducto = new Button();
-            G19_txtCantidadAsignar = new TextBox();
             G19_lblCantidadAsig = new Label();
-            G19_txtProductoAsignar = new TextBox();
-            G19_txtClienteAsignar = new TextBox();
             G19_lblProductosignarCliente = new Label();
             G19_lblClienteAsignarProducto = new Label();
             G19_TituloAsignarProdClient = new Label();
@@ -84,6 +84,7 @@
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)G19_numCantidadAsignar).BeginInit();
             SuspendLayout();
             // 
             // G19_PanelCliente
@@ -105,9 +106,9 @@
             // 
             // G19_btnRegistrarCliente
             // 
-            G19_btnRegistrarCliente.Location = new Point(24, 160);
+            G19_btnRegistrarCliente.Location = new Point(90, 160);
             G19_btnRegistrarCliente.Name = "G19_btnRegistrarCliente";
-            G19_btnRegistrarCliente.Size = new Size(300, 23);
+            G19_btnRegistrarCliente.Size = new Size(201, 23);
             G19_btnRegistrarCliente.TabIndex = 9;
             G19_btnRegistrarCliente.Text = "Registrar Cliente";
             G19_btnRegistrarCliente.UseVisualStyleBackColor = true;
@@ -208,9 +209,9 @@
             // 
             // G19_btnRegistrarProducto
             // 
-            G19_btnRegistrarProducto.Location = new Point(49, 183);
+            G19_btnRegistrarProducto.Location = new Point(83, 183);
             G19_btnRegistrarProducto.Name = "G19_btnRegistrarProducto";
-            G19_btnRegistrarProducto.Size = new Size(300, 23);
+            G19_btnRegistrarProducto.Size = new Size(220, 23);
             G19_btnRegistrarProducto.TabIndex = 17;
             G19_btnRegistrarProducto.Text = "Registrar Producto";
             G19_btnRegistrarProducto.UseVisualStyleBackColor = true;
@@ -218,6 +219,7 @@
             // 
             // G19_cmbCategoríaProducto
             // 
+            G19_cmbCategoríaProducto.DropDownStyle = ComboBoxStyle.DropDownList;
             G19_cmbCategoríaProducto.FormattingEnabled = true;
             G19_cmbCategoríaProducto.Items.AddRange(new object[] { "Abarrotes", "Bebidas", "Limpieza", "Snaks", "Lacteos" });
             G19_cmbCategoríaProducto.Location = new Point(83, 95);
@@ -388,7 +390,7 @@
             panel2.Controls.Add(G19_TituloProductosStock);
             panel2.Location = new Point(12, 402);
             panel2.Name = "panel2";
-            panel2.Size = new Size(392, 170);
+            panel2.Size = new Size(453, 170);
             panel2.TabIndex = 4;
             // 
             // G19_lstProductos
@@ -396,7 +398,7 @@
             G19_lstProductos.Columns.AddRange(new ColumnHeader[] { G19_lsvCodigoProducto, G19_lsvNombreProducto, G19_lsvCategoriaProducto, G19_lsvPrecioProducto, G19_lsvStockProducto });
             G19_lstProductos.Location = new Point(12, 21);
             G19_lstProductos.Name = "G19_lstProductos";
-            G19_lstProductos.Size = new Size(368, 144);
+            G19_lstProductos.Size = new Size(431, 144);
             G19_lstProductos.TabIndex = 1;
             G19_lstProductos.UseCompatibleStateImageBehavior = false;
             G19_lstProductos.View = View.Details;
@@ -429,7 +431,7 @@
             // 
             G19_TituloProductosStock.AutoSize = true;
             G19_TituloProductosStock.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            G19_TituloProductosStock.Location = new Point(35, -3);
+            G19_TituloProductosStock.Location = new Point(12, -2);
             G19_TituloProductosStock.Name = "G19_TituloProductosStock";
             G19_TituloProductosStock.Size = new Size(140, 20);
             G19_TituloProductosStock.TabIndex = 0;
@@ -437,62 +439,67 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(G19_numCantidadAsignar);
+            panel3.Controls.Add(G19_cmbProductoAsignar);
+            panel3.Controls.Add(G19_cmbClienteAsignar);
             panel3.Controls.Add(G19_btnAsignarProducto);
-            panel3.Controls.Add(G19_txtCantidadAsignar);
             panel3.Controls.Add(G19_lblCantidadAsig);
-            panel3.Controls.Add(G19_txtProductoAsignar);
-            panel3.Controls.Add(G19_txtClienteAsignar);
             panel3.Controls.Add(G19_lblProductosignarCliente);
             panel3.Controls.Add(G19_lblClienteAsignarProducto);
             panel3.Controls.Add(G19_TituloAsignarProdClient);
-            panel3.Location = new Point(410, 402);
+            panel3.Location = new Point(474, 402);
             panel3.Name = "panel3";
-            panel3.Size = new Size(378, 170);
+            panel3.Size = new Size(314, 170);
             panel3.TabIndex = 5;
+            // 
+            // G19_numCantidadAsignar
+            // 
+            G19_numCantidadAsignar.Location = new Point(126, 92);
+            G19_numCantidadAsignar.Name = "G19_numCantidadAsignar";
+            G19_numCantidadAsignar.Size = new Size(154, 23);
+            G19_numCantidadAsignar.TabIndex = 19;
+            // 
+            // G19_cmbProductoAsignar
+            // 
+            G19_cmbProductoAsignar.DropDownStyle = ComboBoxStyle.DropDownList;
+            G19_cmbProductoAsignar.FormattingEnabled = true;
+            G19_cmbProductoAsignar.Location = new Point(126, 63);
+            G19_cmbProductoAsignar.Name = "G19_cmbProductoAsignar";
+            G19_cmbProductoAsignar.Size = new Size(154, 23);
+            G19_cmbProductoAsignar.TabIndex = 18;
+            // 
+            // G19_cmbClienteAsignar
+            // 
+            G19_cmbClienteAsignar.DropDownStyle = ComboBoxStyle.DropDownList;
+            G19_cmbClienteAsignar.FormattingEnabled = true;
+            G19_cmbClienteAsignar.Location = new Point(126, 34);
+            G19_cmbClienteAsignar.Name = "G19_cmbClienteAsignar";
+            G19_cmbClienteAsignar.Size = new Size(154, 23);
+            G19_cmbClienteAsignar.TabIndex = 17;
             // 
             // G19_btnAsignarProducto
             // 
-            G19_btnAsignarProducto.Location = new Point(83, 142);
+            G19_btnAsignarProducto.Location = new Point(66, 133);
             G19_btnAsignarProducto.Name = "G19_btnAsignarProducto";
             G19_btnAsignarProducto.Size = new Size(173, 23);
             G19_btnAsignarProducto.TabIndex = 8;
             G19_btnAsignarProducto.Text = "Asignar Producto";
             G19_btnAsignarProducto.UseVisualStyleBackColor = true;
-            // 
-            // G19_txtCantidadAsignar
-            // 
-            G19_txtCantidadAsignar.Location = new Point(130, 104);
-            G19_txtCantidadAsignar.Name = "G19_txtCantidadAsignar";
-            G19_txtCantidadAsignar.Size = new Size(154, 23);
-            G19_txtCantidadAsignar.TabIndex = 7;
+            G19_btnAsignarProducto.Click += G19_btnAsignarProducto_Click;
             // 
             // G19_lblCantidadAsig
             // 
             G19_lblCantidadAsig.AutoSize = true;
-            G19_lblCantidadAsig.Location = new Point(24, 107);
+            G19_lblCantidadAsig.Location = new Point(20, 94);
             G19_lblCantidadAsig.Name = "G19_lblCantidadAsig";
             G19_lblCantidadAsig.Size = new Size(55, 15);
             G19_lblCantidadAsig.TabIndex = 6;
             G19_lblCantidadAsig.Text = "Cantidad";
             // 
-            // G19_txtProductoAsignar
-            // 
-            G19_txtProductoAsignar.Location = new Point(130, 78);
-            G19_txtProductoAsignar.Name = "G19_txtProductoAsignar";
-            G19_txtProductoAsignar.Size = new Size(154, 23);
-            G19_txtProductoAsignar.TabIndex = 4;
-            // 
-            // G19_txtClienteAsignar
-            // 
-            G19_txtClienteAsignar.Location = new Point(130, 49);
-            G19_txtClienteAsignar.Name = "G19_txtClienteAsignar";
-            G19_txtClienteAsignar.Size = new Size(154, 23);
-            G19_txtClienteAsignar.TabIndex = 3;
-            // 
             // G19_lblProductosignarCliente
             // 
             G19_lblProductosignarCliente.AutoSize = true;
-            G19_lblProductosignarCliente.Location = new Point(23, 78);
+            G19_lblProductosignarCliente.Location = new Point(19, 65);
             G19_lblProductosignarCliente.Name = "G19_lblProductosignarCliente";
             G19_lblProductosignarCliente.Size = new Size(56, 15);
             G19_lblProductosignarCliente.TabIndex = 2;
@@ -501,7 +508,7 @@
             // G19_lblClienteAsignarProducto
             // 
             G19_lblClienteAsignarProducto.AutoSize = true;
-            G19_lblClienteAsignarProducto.Location = new Point(23, 49);
+            G19_lblClienteAsignarProducto.Location = new Point(19, 36);
             G19_lblClienteAsignarProducto.Name = "G19_lblClienteAsignarProducto";
             G19_lblClienteAsignarProducto.Size = new Size(44, 15);
             G19_lblClienteAsignarProducto.TabIndex = 1;
@@ -511,7 +518,7 @@
             // 
             G19_TituloAsignarProdClient.AutoSize = true;
             G19_TituloAsignarProdClient.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            G19_TituloAsignarProdClient.Location = new Point(106, 13);
+            G19_TituloAsignarProdClient.Location = new Point(19, -3);
             G19_TituloAsignarProdClient.Name = "G19_TituloAsignarProdClient";
             G19_TituloAsignarProdClient.Size = new Size(134, 20);
             G19_TituloAsignarProdClient.TabIndex = 0;
@@ -540,6 +547,7 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)G19_numCantidadAsignar).EndInit();
             ResumeLayout(false);
         }
 
@@ -582,8 +590,6 @@
         private ColumnHeader G19_lsvCategoriaProducto;
         private ColumnHeader G19_lsvPrecioProducto;
         private ColumnHeader G19_lsvStockProducto;
-        private TextBox G19_txtProductoAsignar;
-        private TextBox G19_txtClienteAsignar;
         private Label G19_lblCantidadAsig;
         private TextBox G19_txtCantidadAsignar;
         private Button G19_btnAsignarProducto;
@@ -595,5 +601,8 @@
         private ColumnHeader G19_lsvDniCliente;
         private ColumnHeader G19_lsvCelularCliente;
         private ColumnHeader G19_lsvGastoTotalCliente;
+        private ComboBox G19_cmbProductoAsignar;
+        private ComboBox G19_cmbClienteAsignar;
+        private NumericUpDown G19_numCantidadAsignar;
     }
 }
