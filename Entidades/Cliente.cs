@@ -34,7 +34,10 @@
 
         public override string ToString()
         {
-            return $"{G19_NombreCliente}|{G19_ApellidosCliente}|{G19_DniCliente}|{G19_CelularCliente}|{G19_TotalGastadoDineroCliente}";
+            string asignaciones = G19_ProductosAsignados.Count == 0
+                ? string.Empty
+                : string.Join(";", G19_ProductosAsignados.Select(a => $"{a.G19_CodigoProducto},{a.G19_Cantidad},{a.G19_PrecioUnitario}"));
+            return $"{G19_NombreCliente}|{G19_ApellidosCliente}|{G19_DniCliente}|{G19_CelularCliente}|{G19_TotalGastadoDineroCliente}|{asignaciones}";
         }
     }
 

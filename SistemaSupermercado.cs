@@ -14,6 +14,15 @@ namespace EF_FP_G19
         {
             return numeros < 10 ? 1 : 1 + G19_contarDigitos(numeros / 10);
         }
+        private void G19_refrescarTotalGastado()
+        {
+            double totalGastado = 0;
+            for (int i = 0; i < G19_Clientes.listaClientes.Count; i++)
+            {
+                totalGastado += G19_Clientes.listaClientes[i].G19_CalcularTotalGastado();
+            }
+            G19_lblTotalGastadoDineroCliente.Text = $"S/ {totalGastado.ToString()}";
+        }
         private void G19_refrescarListaClientes()
         {
             G19_lstClientes.Items.Clear();
@@ -27,6 +36,7 @@ namespace EF_FP_G19
                 item.Tag = cliente;
                 G19_lstClientes.Items.Add(item);
             }
+            G19_refrescarTotalGastado();
         }
         private void G19_refrescarListaAsignarCliente()
         {
@@ -59,10 +69,41 @@ namespace EF_FP_G19
             }
         }
 
+        private void G19_refrescarCombosAsignacion()
+        {
+            G19_cmbClienteAsignar.Items.Clear();
+            foreach (var c in G19_Clientes.listaClientes)
+            {
+                G19_cmbClienteAsignar.Items.Add($"{c.G19_DniCliente} - {c.G19_NombreCliente} {c.G19_ApellidosCliente}");
+            }
+
+            G19_cmbProductoAsignar.Items.Clear();
+            foreach (var p in G19_Productos.listaProductos)
+            {
+                G19_cmbProductoAsignar.Items.Add($"{p.G19_CodigoProducto} - {p.G19_NombreProducto}");
+            }
+        }
+
         private void SistemaSupermercado_Load(object sender, EventArgs e)
         {
+            G19_refrescarListaClientes();
+            G19_refrescarListaProductos();
             G19_refrescarListaAsignarCliente();
             G19_refrescarListaAsignarProducto();
+
+            try
+            {
+                G19_Productos.G19_CargarDesdeTxt();
+                G19_Clientes.G19_CargarDesdeTxt();
+
+                G19_refrescarCombosAsignacion();
+                G19_refrescarListaProductos();
+                G19_refrescarListaClientes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se pudieron cargar los datos: {ex.Message}");
+            }
         }
 
         private void G19_btnRegistrarCliente_Click(object sender, EventArgs e)
@@ -199,6 +240,15 @@ namespace EF_FP_G19
                     G19_productoSeleccionado.G19_StockProducto);
                 G19_clienteSeleccionado.G19_AñadirAsignacion(nuevaAsignacion);
                 G19_productoSeleccionado.G19_StockProducto -= G19_cantidadProducto;
+                try
+                {
+                    G19_Clientes.G19_GuardarEnTxt();
+                    G19_Productos.G19_GuardarEnTxt();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al guardar cambios: {ex.Message}");
+                }
                 G19_refrescarListaClientes();
                 G19_refrescarListaProductos();
                 MessageBox.Show("Producto asignado al cliente correctamente.");
